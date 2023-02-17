@@ -3,18 +3,15 @@ const stockHistoryURL =
 
 async function getHistoricalData() {
   const response = await fetch(stockHistoryURL);
-  console.log(response);
-  const data = await response.json();
-  console.log(data);
-  length = data.historical.length;
-  console.log(length);
-
-  labels = [];
-  values = [];
-  for (i = 0; i < length; i++) {
-    labels.push(data.historical[i].date);
-    values.push(data.historical[i].close);
+  const { historical } = await response.json();
+  console.log({ historical });
+  const labels = [];
+  const values = [];
+  for (i = 0; i < historical.length; i++) {
+    labels.push(historical[i].date);
+    values.push(historical[i].close);
   }
+  console.log({ labels, values });
 
   new Chart(document.getElementById("bar-chart"), {
     type: "bar",

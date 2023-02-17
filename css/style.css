@@ -17,3 +17,10 @@ img {
   width: 20px;
   height: 20px;
 }
+
+.positive {
+  color: lightgreen;
+}
+.negative {
+  color: darkred;
+}
