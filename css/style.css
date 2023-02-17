@@ -1,0 +1,19 @@
+.search-container {
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.search-container input {
+  flex: 1;
+}
+
+li {
+  list-style: none;
+  padding: 20px;
+}
+
+img {
+  width: 20px;
+  height: 20px;
+}
