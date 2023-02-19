@@ -1,7 +1,64 @@
+body {
+  min-height: 100vh;
+  --space: 500px;
+  align-content: center;
+  overflow: hidden;
+  gap: var(--space);
+  width: 100%;
+  font-family: "POPPINS", system-ui, sans-serif;
+  font-size: 150px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: white;
+}
+
+.marquee {
+  --duration: 60s;
+  --gap: var(--space);
+
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+}
+
+.marquee__group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--gap);
+  min-width: 100vw;
+  animation: scroll var(--duration) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__group {
+    animation-play-state: paused;
+  }
+}
+
+.marquee--reverse .marquee__group {
+  animation-direction: reverse;
+  animation-delay: calc(var(--duration) / -2);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
 .search-container {
   width: 400px;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .search-container input {

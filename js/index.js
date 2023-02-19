@@ -76,12 +76,12 @@ function renderSearchResultItem(companyData) {
   const listElement = document.createElement("li");
   const imageElement = document.createElement("img");
   const linkElement = document.createElement("a");
-  const textElement = document.createElement("p");
+  const textElement = document.createElement("span");
 
   linkElement.textContent = companyName;
   linkElement.setAttribute("href", `company.html?symbol=${symbol}`);
   imageElement.setAttribute("src", `${imageUrl}`);
-  //textElement.textContent = `${symbol} (${changesPercentage} %)`;
+  textElement.textContent = `(${symbol}) (${changesPercentage} %)`;
 
   listElement.append(imageElement, linkElement, textElement);
   searchList.appendChild(listElement);
