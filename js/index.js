@@ -1,10 +1,24 @@
 const input = document.getElementById("user-input");
-const searchButton = document.getElementById("search-button");
+//const searchButton = document.getElementById("search-button");
 const searchList = document.getElementById("search-list");
 const spinner = document.getElementById("spinner");
 
 const baseURL =
   "https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/";
+
+function debounce(func, interval) {
+  var timeout;
+  return function () {
+    var context = this,
+      args = arguments;
+    var later = function () {
+      timeout = null;
+      func.apply(context, args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, interval || 200);
+  };
+}
 
 function getSearchURL(input) {
   const URLlimit = `search?query=${input.value}&limit=10&exchange=NASDAQ`;
@@ -13,27 +27,32 @@ function getSearchURL(input) {
 
 // click - > get data from input > search for matches -> get more data about the matches > show company list
 
-searchButton.addEventListener("click", function (event) {
-  event.preventDefault();
-  searchList.innerHTML = "";
-  spinner.classList.remove("visually-hidden");
-  getSearchData();
-});
+input.addEventListener(
+  "input",
+  debounce(function (event) {
+    event.preventDefault();
+    searchList.innerHTML = "";
+    spinner.classList.remove("visually-hidden");
+    getSearchData();
+  }, 1000)
+);
 
 async function getSearchData() {
   try {
     const response = await fetch(getSearchURL(input));
     const searchResults = await response.json(); //arr with search matches
-    console.log(searchResults);
+
+    if (searchResults.length === 0) {
+      spinner.classList.add("visually-hidden");
+      searchList.innerText = "No results found";
+      return;
+    }
 
     const promises = [];
     for (const company of searchResults) {
       const { symbol } = company;
       promises.push(getMoreSearchData(symbol));
-      //await getMoreSearchData(symbol);
     }
-    //spinner.classList.add("visually-hidden");
-
     try {
       // finished once all the promises in the given array
       // are fulfilled

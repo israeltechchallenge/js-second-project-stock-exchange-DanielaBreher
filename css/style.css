@@ -1,19 +1,14 @@
 body {
+  height: 100%;
   min-height: 100vh;
   --space: 500px;
-  align-content: center;
   overflow: hidden;
-  gap: var(--space);
   width: 100%;
-  font-family: "POPPINS", system-ui, sans-serif;
-  font-size: 150px;
-  line-height: 1.5;
-  font-weight: 700;
-  color: white;
+  background-color: #2b6777;
 }
 
 .marquee {
-  --duration: 60s;
+  --duration: 190s;
   --gap: var(--space);
 
   display: flex;
@@ -22,7 +17,7 @@ body {
   gap: var(--gap);
 }
 
-.marquee__group {
+.marquee-text {
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -32,13 +27,17 @@ body {
   animation: scroll var(--duration) linear infinite;
 }
 
+.marquee-item {
+  margin: 3px 6px;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .marquee__group {
+  .marquee-text {
     animation-play-state: paused;
   }
 }
 
-.marquee--reverse .marquee__group {
+.marquee--reverse .marquee-text {
   animation-direction: reverse;
   animation-delay: calc(var(--duration) / -2);
 }
@@ -59,12 +58,24 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  text-decoration: none;
+  gap: 20px;
 }
 
 .search-container input {
   flex: 1;
 }
 
+.search-list-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-containe .user-input {
+  border-radius: 50px;
+}
 li {
   list-style: none;
   padding: 20px;

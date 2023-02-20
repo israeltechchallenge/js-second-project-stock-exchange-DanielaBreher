@@ -15,13 +15,13 @@
   </head>
   <body>
     <div class="marquee">
-      <div class="marquee__group">
-        <p>WHO WE ARE22</p>
-        <p aria-hidden="true">WHO WE ARE</p>
+      <div class="marquee-text">
+        <p>""</p>
+        <p aria-hidden="true">""</p>
       </div>
 
-      <div aria-hidden="true" class="marquee__group">
-        <p>WHO WE ARE22</p>
+      <div aria-hidden="true" class="marquee-text">
+        <p>DANIELA</p>
         <p>WHO WE ARE</p>
       </div>
     </div>
@@ -29,18 +29,19 @@
     <form id="search-form">
       <div class="search-container">
         <h2>Search Nasdaq Stocks</h2>
-        <input type="text" id="user-input" />
-        <button type="search" id="search-button">Search</button>
-      </div>
-      <div
-        id="spinner"
-        class="spinner-border visually-hidden"
-        role="status"
-      ></div>
-      <div id="search-list">
-        <ul></ul>
+        <input type="text" id="user-input" placeholder="Search Nasdaq Stocks" />
+        <div
+          id="spinner"
+          class="spinner-border visually-hidden"
+          role="status"
+        ></div>
+        <div class="search-list-wrapper">
+          <div id="search-list"></div>
+          <ul></ul>
+        </div>
       </div>
     </form>
-    <script src="./js/index.js"></script>
+    <script src="./js/index.js" defer></script>
+    <script src="./js/marquee.js" defer></script>
   </body>
 </html>
