@@ -14,34 +14,29 @@
     />
   </head>
   <body>
-    <div class="marquee">
-      <div class="marquee-text">
-        <p>""</p>
-        <p aria-hidden="true">""</p>
-      </div>
-
-      <div aria-hidden="true" class="marquee-text">
-        <p>DANIELA</p>
-        <p>WHO WE ARE</p>
-      </div>
-    </div>
+    <div class="marquee"></div>
 
     <form id="search-form">
       <div class="search-container">
         <h2>Search Nasdaq Stocks</h2>
-        <input type="text" id="user-input" placeholder="Search Nasdaq Stocks" />
-        <div
-          id="spinner"
-          class="spinner-border visually-hidden"
-          role="status"
-        ></div>
+        <div class="input-container">
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Search Nasdaq Stocks"
+          />
+          <div
+            id="spinner"
+            class="spinner-border transparent"
+            role="status"
+          ></div>
+        </div>
         <div class="search-list-wrapper">
-          <div id="search-list"></div>
-          <ul></ul>
+          <ul id="search-list"></ul>
         </div>
       </div>
     </form>
-    <script src="./js/index.js" defer></script>
     <script src="./js/marquee.js" defer></script>
+    <script src="./js/index.js" defer></script>
   </body>
 </html>

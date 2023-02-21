@@ -32,7 +32,7 @@ input.addEventListener(
   debounce(function (event) {
     event.preventDefault();
     searchList.innerHTML = "";
-    spinner.classList.remove("visually-hidden");
+    spinner.classList.remove("transparent");
     getSearchData();
   }, 1000)
 );
@@ -43,7 +43,7 @@ async function getSearchData() {
     const searchResults = await response.json(); //arr with search matches
 
     if (searchResults.length === 0) {
-      spinner.classList.add("visually-hidden");
+      spinner.classList.add("transparent");
       searchList.innerText = "No results found";
       return;
     }
@@ -62,7 +62,7 @@ async function getSearchData() {
     } catch (e) {
       // do something about the error
     } finally {
-      spinner.classList.add("visually-hidden");
+      spinner.classList.add("transparent");
     }
   } catch (error) {
     console.log(error);
@@ -93,6 +93,7 @@ function renderSearchResultItem(companyData) {
   const symbol = companyData.symbol;
 
   const listElement = document.createElement("li");
+  listElement.classList.add("search-result-item");
   const imageElement = document.createElement("img");
   const linkElement = document.createElement("a");
   const textElement = document.createElement("span");
@@ -100,8 +101,13 @@ function renderSearchResultItem(companyData) {
   linkElement.textContent = companyName;
   linkElement.setAttribute("href", `company.html?symbol=${symbol}`);
   imageElement.setAttribute("src", `${imageUrl}`);
-  textElement.textContent = `(${symbol}) (${changesPercentage} %)`;
+  const sign = Number(changesPercentage) > 0 ? "positive" : "negative";
+  textElement.innerHTML = `(${symbol}) (<span class="${sign}">${Number(
+    changesPercentage
+  ).toFixed(2)}%</span>)`;
 
   listElement.append(imageElement, linkElement, textElement);
   searchList.appendChild(listElement);
 }
+const marqueeURL = baseURL + "stock/list";
+new Marquee(document.querySelector(".marquee"), marqueeURL);

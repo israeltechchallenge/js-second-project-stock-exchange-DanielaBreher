@@ -1,3 +1,9 @@
+*,
+body ul,
+body ol {
+  margin: 0;
+  padding: 0;
+}
 body {
   height: 100%;
   min-height: 100vh;
@@ -5,6 +11,75 @@ body {
   overflow: hidden;
   width: 100%;
   background-color: #2b6777;
+}
+
+.input-container {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2px 5px;
+  width: 100%;
+  display: flex;
+}
+.input-container input,
+.input-container input:focus-visible {
+  border: 0;
+  outline: 0;
+}
+.transparent {
+  visibility: hidden;
+}
+
+#spinner {
+  height: 20px;
+  width: 20px;
+}
+#search-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.search-result-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  list-style: none;
+}
+
+.search-container {
+  width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-decoration: none;
+  gap: 20px;
+}
+
+.search-container input {
+  flex: 1;
+}
+
+.search-list-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-containe .user-input {
+  border-radius: 50px;
+}
+
+img {
+  width: 20px;
+  height: 20px;
+}
+
+.positive {
+  color: lightgreen;
+}
+.negative {
+  color: darkred;
 }
 
 .marquee {
@@ -50,45 +125,4 @@ body {
   100% {
     transform: translateX(calc(-100% - var(--gap)));
   }
-}
-
-.search-container {
-  width: 400px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-decoration: none;
-  gap: 20px;
-}
-
-.search-container input {
-  flex: 1;
-}
-
-.search-list-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.search-containe .user-input {
-  border-radius: 50px;
-}
-li {
-  list-style: none;
-  padding: 20px;
-}
-
-img {
-  width: 20px;
-  height: 20px;
-}
-
-.positive {
-  color: lightgreen;
-}
-.negative {
-  color: darkred;
 }

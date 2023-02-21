@@ -1,32 +1,46 @@
-const marqueeURL = baseURL + "stock/list";
-const marqueeElements = document.querySelectorAll(".marquee-text p");
+class Marquee {
+  constructor(container, dataUrl) {
+    this.container = container;
+    this.dataUrl = dataUrl;
+    container.innerHTML = `<div class="marquee-text">
+    <p></p>
+    <p aria-hidden="true"></p>
+  </div>
 
-function displayMarqueeData(data) {
-  marqueeElements.forEach((element) => {
-    element.innerHTML = "";
-  });
-  for (const company of data) {
-    const symbol = company.symbol;
-    const price = company.price;
-    const html = `<span class="marquee-item">${symbol} ${price}</span>`;
-    //const el = document.createElement("span");
-    //el.textContent = symbol;
+  <div aria-hidden="true" class="marquee-text">
+    <p></p>
+    <p></p>
+  </div>`;
+    this.init();
+  }
+
+  async init() {
+    const data = (await this.getMarqueeData()).slice(0, 30);
+    this.displayMarqueeData(data);
+  }
+
+  async getMarqueeData() {
+    const response = await fetch(this.dataUrl);
+    const data = await response.json();
+    return data;
+  }
+
+  displayMarqueeData(data) {
+    const marqueeElements = document.querySelectorAll(".marquee-text p");
+
     marqueeElements.forEach((element) => {
-      element.innerHTML += html;
-      //element.appendChild(el);
+      element.innerHTML = "";
     });
+    for (const company of data) {
+      const symbol = company.symbol;
+      const price = company.price;
+      const html = `<span class="marquee-item">${symbol} ${price}</span>`;
+      //const el = document.createElement("span");
+      //el.textContent = symbol;
+      marqueeElements.forEach((element) => {
+        element.innerHTML += html;
+        //element.appendChild(el);
+      });
+    }
   }
 }
-
-async function getMarqueeData() {
-  const response = await fetch(marqueeURL);
-  const data = await response.json();
-  return data;
-}
-
-async function init() {
-  const data = (await getMarqueeData()).slice(0, 30);
-  displayMarqueeData(data);
-}
-
-init();
