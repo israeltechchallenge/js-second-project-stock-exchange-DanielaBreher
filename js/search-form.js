@@ -54,7 +54,7 @@ class SearchForm {
       try {
         const companies = await Promise.all(promises);
         if (this.onSearchFinish) {
-          this.onSearchFinish(companies);
+          this.onSearchFinish(companies, this.input.value);
         }
       } catch (e) {
         // do something about the error
