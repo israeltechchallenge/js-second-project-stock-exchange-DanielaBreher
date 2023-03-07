@@ -1,7 +1,7 @@
 class Marquee {
-  constructor(container, dataUrl) {
+  constructor(container) {
     this.container = container;
-    this.dataUrl = dataUrl;
+    this.dataUrl = baseURL + "stock/list";
     container.innerHTML = `<div class="marquee-text">
     <p></p>
     <p aria-hidden="true"></p>
